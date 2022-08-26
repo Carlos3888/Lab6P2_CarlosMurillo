@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JColorChooser;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     DefaultListModel modelopersonas =  new DefaultListModel();
+    DefaultListModel modelonjetos =  new DefaultListModel();
+    DefaultComboBoxModel modelo_c_personas = new DefaultComboBoxModel();
     
     private ArrayList lista_perosnas = new ArrayList();
     public Principal() {
@@ -146,6 +149,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        lista_o = new javax.swing.JList<>();
+        jLabel48 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -442,12 +450,16 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel30.setText("Persona que lo ingreso");
 
-        combo_personas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         combo_t_o.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zapatos", "Ropa", "Hogar" }));
         combo_t_o.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_t_oActionPerformed(evt);
+            }
+        });
+
+        b_color.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_colorMouseClicked(evt);
             }
         });
 
@@ -793,15 +805,41 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane7.addTab("Lista de Personas", jPanel7);
 
+        jLabel15.setText("Color");
+
+        jLabel16.setText("Marca");
+
+        jScrollPane6.setViewportView(lista_o);
+
+        jLabel48.setText("Persona que lo ingreso");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel16)
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel48)))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         jTabbedPane7.addTab("Lista de Objetos", jPanel8);
@@ -898,17 +936,19 @@ public class Principal extends javax.swing.JFrame {
             String contra = t_contra.getText();
             int numc = combo_cargo.getSelectedIndex();
             String cargo = combo_cargo.getItemAt(numc);
-            lista_perosnas.add(new Personas(tipo, nombre, id, edad, sexo, estado, altura, peso, usuario, contra, cargo));
+            lista_perosnas.add(nombre);
             modelopersonas.addElement(new Personas(tipo, id, nombre, edad, sexo, estado, altura, peso, usuario, contra, cargo));
         }else{
             String ocupacion = t_ocupacion.getText();
             String horario = t_horario.getText();
             int tiempo = Integer.parseInt(t_tiempo.getText());
             double sueldo = Integer.parseInt(t_sueldo.getText());
-            lista_perosnas.add(new Personas(tipo, id, nombre, edad, sexo, estado, altura, peso, ocupacion, horario, tiempo, sueldo));
+            lista_perosnas.add(nombre);
             modelopersonas.addElement(new Personas(tipo, id, nombre, edad, sexo, estado, altura, peso, ocupacion, horario, tiempo, sueldo));
         }
+        modelo_c_personas.addElement(nombre);
         lista_p.setModel(modelopersonas);
+        combo_personas.setModel(modelo_c_personas);
         
         t_id.setText("");
         t_nombre.setText("");
@@ -920,6 +960,8 @@ public class Principal extends javax.swing.JFrame {
         t_horario.setText("");
         t_tiempo.setText("");
         t_sueldo.setText("");
+        t_usuario.setText("");
+        t_contra.setText("");
     }//GEN-LAST:event_crear_pMouseClicked
 
     private void crear_oMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crear_oMouseClicked
@@ -930,32 +972,38 @@ public class Principal extends javax.swing.JFrame {
         String marac = t_marca.getText();
         int tamano = Integer.parseInt(t_tamano.getText());
         String calidad = t_calidad.getText();
-        //new Persona = 
+        int num2 = combo_personas.getSelectedIndex();
+        String persona = (String) lista_perosnas.get(num2);
         
         if(tipo.equals("Zapatos")){
             String talla = t_talla.getText();
             String suela = t_de_suela.getText();
             String comodidad = t_comodidad.getText();
-            
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, talla, calidad, persona, talla, suela, comodidad));
         }else if(tipo.equals("Ropa")){
             String talla = t_talla_r.getText();
             String tela = t_tela.getText();
             String pais = t_pais.getText();
-            
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tela, calidad, persona, talla, tela, pais, num));
         }else if(tipo.equals("Hogar")){
             String descripcion1 = t_descripcion_h.getText();
             String instrucciones = t_instrucciones_h.getText();
             int tiempo = Integer.parseInt(t_garantia.getText());
-            
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, marac, calidad, persona, descripcion1, instrucciones, tiempo));
         }else{
             
         }
 
-        
+        lista_o.setModel(modelonjetos);
         
         
         
     }//GEN-LAST:event_crear_oMouseClicked
+
+    private void b_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_colorMouseClicked
+        b_color.setBackground(JColorChooser.showDialog(this, "Seleccione un color", Color.yellow)
+        );
+    }//GEN-LAST:event_b_colorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1014,6 +1062,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1048,6 +1098,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1061,7 +1112,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane7;
+    private javax.swing.JList<String> lista_o;
     private javax.swing.JList<String> lista_p;
     private javax.swing.JPanel p_c_objetos;
     private javax.swing.JPanel p_c_personas;
