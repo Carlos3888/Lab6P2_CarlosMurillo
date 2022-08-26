@@ -56,6 +56,14 @@ public class Personas {
         return tipo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
