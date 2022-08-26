@@ -23,9 +23,11 @@ public class Principal extends javax.swing.JFrame {
     DefaultListModel modelopersonas =  new DefaultListModel();
     DefaultListModel modelonjetos =  new DefaultListModel();
     DefaultComboBoxModel modelo_c_personas = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelo_c_objetos = new DefaultComboBoxModel();
     
     
     private ArrayList lista_perosnas = new ArrayList();
+    private ArrayList lista_objetos = new ArrayList();
     public Principal() {
         initComponents();
         p_gerente.setVisible(true);
@@ -1451,7 +1453,51 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificar_oMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_oMouseClicked
-        // TODO add your handling code here:
+
+        Color color = b_color.getBackground();
+        String descripcion = t_descripcion.getText();
+        String marac = t_marca.getText();
+        int tamano = Integer.parseInt(t_tamano.getText());
+        String calidad = t_calidad.getText();
+        int num2 = combo_personas.getSelectedIndex();
+        String persona = (String) lista_perosnas.get(num2);
+        
+
+        int num1 = combo_o_m.getSelectedIndex();
+        Objetos objeto =  (Objetos) modelonjetos.get(num1);
+        objeto.setColor(color);
+        objeto.setDescripcion(descripcion);
+        objeto.setTamano(tamano);
+        objeto.setCalidad(calidad);
+        objeto.setPersona(persona);
+        
+        String tipo = objeto.getTipo();
+        
+        if(tipo.equals("Zapatos")){
+            String talla = t_talla.getText();
+            String suela = t_de_suela.getText();
+            String comodidad = t_comodidad.getText();
+            objeto.setTalla(talla);
+            objeto.setSuela(suela);
+            objeto.setComodidad(comodidad);
+            lista_objetos.set(num1, marac);
+        }else if(tipo.equals("Ropa")){
+            String talla = t_talla_r.getText();
+            String tela = t_tela.getText();
+            String pais = t_pais.getText();
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, talla, tela, pais, num));
+            lista_objetos.set(num1, marac);
+        }else if(tipo.equals("Hogar")){
+            String descripcion1 = t_descripcion_h.getText();
+            String instrucciones = t_instrucciones_h.getText();
+            int tiempo = Integer.parseInt(t_garantia.getText());
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, descripcion1, instrucciones, tiempo));
+            lista_objetos.set(num1, marac);
+        }else{
+
+        }
+        modelo_c_objetos.setSelectedItem(marac);
+        modelonjetos.setElementAt(objeto, num1);
     }//GEN-LAST:event_modificar_oMouseClicked
 
     private void b_color1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_color1MouseClicked
@@ -1473,22 +1519,26 @@ public class Principal extends javax.swing.JFrame {
             String talla = t_talla.getText();
             String suela = t_de_suela.getText();
             String comodidad = t_comodidad.getText();
-            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, talla, calidad, persona, talla, suela, comodidad));
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, talla, suela, comodidad));
+            lista_objetos.add(marac);
         }else if(tipo.equals("Ropa")){
             String talla = t_talla_r.getText();
             String tela = t_tela.getText();
             String pais = t_pais.getText();
-            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tela, calidad, persona, talla, tela, pais, num));
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, talla, tela, pais, num));
+            lista_objetos.add(marac);
         }else if(tipo.equals("Hogar")){
             String descripcion1 = t_descripcion_h.getText();
             String instrucciones = t_instrucciones_h.getText();
             int tiempo = Integer.parseInt(t_garantia.getText());
-            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, marac, calidad, persona, descripcion1, instrucciones, tiempo));
+            modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, descripcion1, instrucciones, tiempo));
+            lista_objetos.add(marac);
         }else{
 
         }
-
+        modelo_c_objetos.addElement(marac);
         lista_o.setModel(modelonjetos);
+        combo_o_m.setModel(modelo_c_objetos);
 
     }//GEN-LAST:event_crear_oMouseClicked
 

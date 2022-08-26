@@ -8,7 +8,7 @@ public class Objetos {
     private Color color;
     private String descripcion;
     private String marca;
-    private String tamano;
+    private int tamano;
     private String calidad;
     private String persona;
     
@@ -28,7 +28,7 @@ public class Objetos {
     public Objetos() {
     }
 
-    public Objetos(String tipo, Color color, String descripcion, String marca, String tamano, String calidad, String persona, String talla, String suela, String comodidad) {
+    public Objetos(String tipo, Color color, String descripcion, String marca, int tamano, String calidad, String persona, String talla, String suela, String comodidad) {
         this.tipo = tipo;
         this.color = color;
         this.descripcion = descripcion;
@@ -41,7 +41,7 @@ public class Objetos {
         this.comodidad = comodidad;
     }
     
-    public Objetos(String tipo, Color color, String descripcion, String marca, String tamano, String calidad, String persona, String talla2, String tela, String pais, int num) {
+    public Objetos(String tipo, Color color, String descripcion, String marca, int tamano, String calidad, String persona, String talla2, String tela, String pais, int num) {
         this.tipo = tipo;
         this.color = color;
         this.descripcion = descripcion;
@@ -54,7 +54,7 @@ public class Objetos {
         this.pais = pais;
     }
 
-    public Objetos(String tipo, Color color, String descripcion, String marca, String tamano, String calidad, String persona, String descripcion2, String instrucciones, int tiempo) {
+    public Objetos(String tipo, Color color, String descripcion, String marca, int tamano, String calidad, String persona, String descripcion2, String instrucciones, int tiempo) {
         this.tipo = tipo;
         this.color = color;
         this.descripcion = descripcion;
@@ -99,11 +99,11 @@ public class Objetos {
         this.marca = marca;
     }
 
-    public String getTamano() {
+    public int getTamano() {
         return tamano;
     }
 
-    public void setTamano(String tamano) {
+    public void setTamano(int tamano) {
         this.tamano = tamano;
     }
 
