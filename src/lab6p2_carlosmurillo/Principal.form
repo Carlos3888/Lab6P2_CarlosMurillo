@@ -2017,12 +2017,7 @@
             <Component class="javax.swing.JComboBox" name="combo_o_m">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -2101,6 +2096,7 @@
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="273" max="32767" attributes="0"/>
                   </Group>
@@ -2116,7 +2112,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="343" max="-2" attributes="0"/>
-                      <EmptySpace pref="327" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="285" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2151,6 +2149,14 @@
                 <Property name="text" type="java.lang.String" value="Rol"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel8">
@@ -2168,6 +2174,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" pref="959" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
@@ -2192,7 +2199,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="343" max="-2" attributes="0"/>
-                      <EmptySpace pref="309" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="267" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2231,6 +2240,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Persona que lo ingreso"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="elminar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

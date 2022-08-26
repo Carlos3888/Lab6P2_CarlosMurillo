@@ -240,12 +240,14 @@ public class Principal extends javax.swing.JFrame {
         lista_p = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         lista_o = new javax.swing.JList<>();
         jLabel48 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1334,7 +1336,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel50.setText("Seleccione el objeto a modificar");
         p_m_objetos.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        combo_o_m.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         p_m_objetos.add(combo_o_m, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 210, -1));
 
         jTabbedPane7.addTab("Modificar Objeto", p_m_objetos);
@@ -1371,6 +1372,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel14.setText("Rol");
 
+        jButton1.setText("Eliminar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1382,7 +1390,8 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel14)))
+                        .addComponent(jLabel14))
+                    .addComponent(jButton1))
                 .addContainerGap(273, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1394,7 +1403,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         jTabbedPane7.addTab("Lista de Personas", jPanel7);
@@ -1407,6 +1418,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel48.setText("Persona que lo ingreso");
 
+        jButton2.setText("elminar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -1414,6 +1432,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel15)
@@ -1433,7 +1452,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel48))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         jTabbedPane7.addTab("Lista de Objetos", jPanel8);
@@ -1485,6 +1506,7 @@ public class Principal extends javax.swing.JFrame {
             String talla = t_talla_r.getText();
             String tela = t_tela.getText();
             String pais = t_pais.getText();
+            int num = 0;
             modelonjetos.addElement(new Objetos(tipo, color, descripcion, marac, tamano, calidad, persona, talla, tela, pais, num));
             lista_objetos.set(num1, marac);
         }else if(tipo.equals("Hogar")){
@@ -1747,6 +1769,26 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_combo_personas_mActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        int num = lista_p.getSelectedIndex();
+        lista_perosnas.remove(num);
+        modelopersonas.remove(num);
+        modelo_c_personas.removeElementAt(num);
+        combo_personas.setModel(modelo_c_personas);
+        combo_personas_m.setModel(modelo_c_personas);
+        lista_p.setModel(modelopersonas);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        int num = lista_o.getSelectedIndex();
+        lista_objetos.remove(num);
+        modelonjetos.remove(num);
+        modelo_c_objetos.removeElementAt(num);
+        combo_t_o.setModel(modelo_c_objetos);
+        combo_o_m.setModel(modelo_c_objetos);
+        lista_o.setModel(modelonjetos);
+    }//GEN-LAST:event_jButton2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1810,6 +1852,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane descripcion_h;
     private javax.swing.JScrollPane descripcion_h1;
     private javax.swing.ButtonGroup estado;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
